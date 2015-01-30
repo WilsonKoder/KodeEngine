@@ -74,15 +74,15 @@ int main(int argc, char** argv)
 
 	while (!window.isClosed())
 	{
-		//window.clear();
+		window.clear();
 
 		fpsCam.checkInput();
 
-		// KodeEngine::Shape::shapeDrawBufferWithColor(cubeBuffer, 36, colorBuffer, 1, 0, 0, 1, GL_TRIANGLES);
+		KodeEngine::Shape::shapeDrawBufferWithColor(cubeBuffer, 36, colorBuffer, 1, 0, 0, 1, GL_TRIANGLES);
 
 		KodeEngine::Shape::shapeDrawBuffer(cubeBuffer, 0, 3, GL_TRIANGLES, 0);
 
-		//fpsCam.update(window, program);
+		fpsCam.update(window, program);
 
 		window.swapBuffers();
 	}
