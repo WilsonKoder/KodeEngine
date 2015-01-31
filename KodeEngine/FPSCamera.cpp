@@ -48,7 +48,7 @@ void KodeEngine::FPSCam::sendMatrix(GLuint program)
 }
 
 void KodeEngine::FPSCam::onMouseMotion(float relX, float relY) {
-    horizontalAngle += mouseSpeed * 0.2f * relX;
+    horizontalAngle -= mouseSpeed * 0.2f * relX;
     verticalAngle += mouseSpeed * 0.2f * relY;
 }
 

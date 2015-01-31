@@ -7,7 +7,7 @@ void processInput(KodeEngine::FPSCam& fpsCam);
 
 int main(int argc, char** argv)
 {
-	int windowSize[2] = { 800, 600 };
+	int windowSize[2] = { 960, 540 };
 	GLfloat clearColor[3] = { 0.0f, 0.0f, 0.0f };
 	KodeEngine::Window window(windowSize, "Hello!", clearColor);
 	KodeEngine::Shader shader;
@@ -16,8 +16,8 @@ int main(int argc, char** argv)
 	//KodeEngine::Image image(pathToImage);
 	//GLuint tex = image.tex;
 
-	GLuint vertexShader = shader.compile(GL_VERTEX_SHADER, "C:/Users\Wilson\Desktop\Programming\Projects\KodeEngine\KodeEngine\shader\basic.vert"); // xcode path issue.
-	GLuint fragShader = shader.compile(GL_FRAGMENT_SHADER, "C:/Users\Wilson\Desktop\Programming\Projects\KodeEngine\KodeEngine\shader\basic.frag"); // xcode path issue.
+	GLuint vertexShader = shader.compile(GL_VERTEX_SHADER, "shader/inColor.vert"); // xcode path issue.
+	GLuint fragShader = shader.compile(GL_FRAGMENT_SHADER, "shader/inColor.frag"); // xcode path issue.
 	std::vector<GLuint> shaders = { vertexShader, fragShader };
 	GLuint program = shader.linkShader(shaders);
 	shader.useShader(program);
@@ -68,7 +68,7 @@ int main(int argc, char** argv)
 	GLuint colorBuffer = KodeEngine::Shape::setupShapeColor(colorData, 36, sizeof(colorData));
 
 	GLfloat FoV = 45.0f;
-	GLfloat aspectRatio = 1280.0f / 720.0f;
+	GLfloat aspectRatio = 960.0f / 540.0f;
 
 	KodeEngine::FPSCam fpsCam(FoV, aspectRatio);
 
