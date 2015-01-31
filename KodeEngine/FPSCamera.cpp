@@ -30,15 +30,8 @@ void KodeEngine::FPSCam::setPos(glm::vec3 position)
     pos = position;
 }
 
-void KodeEngine::FPSCam::update(KodeEngine::Window window, GLuint program)
+void KodeEngine::FPSCam::update(GLuint program)
 {
-	checkInput();
-    SDL_GetMouseState(&mouseX, &mouseY);
-    SDL_WarpMouseInWindow(window.getWindow(), window.resX / 2, window.resY / 2);
-    
-    horizontalAngle += mouseSpeed * 0.2f * float(window.resX / 2 - mouseX);
-    verticalAngle += mouseSpeed * 0.2f * float(window.resY / 2 - mouseY);
-    
     dir = glm::vec3(cos(verticalAngle) * sin(horizontalAngle), sin(verticalAngle), cos(verticalAngle) * cos(horizontalAngle));
     right = glm::vec3(sin(horizontalAngle - 3.14 / 2.0f), 0, cos(horizontalAngle - 3.14f / 2.0f));
     up = glm::cross(right, dir);
@@ -46,55 +39,37 @@ void KodeEngine::FPSCam::update(KodeEngine::Window window, GLuint program)
     View = glm::lookAt(pos, pos + dir, up);
     MVP = Projection * View * Model;
     sendMatrix(program);
-    checkInput();
-}
-
-void KodeEngine::FPSCam::checkInput()
-{
-    SDL_Event e;
-    while (SDL_PollEvent(&e))
-    {
-        switch (e.type) {
-            case SDL_KEYDOWN:
-                if (e.key.keysym.sym == SDLK_w || e.key.keysym.sym == SDLK_UP)
-                {
-                    pos += dir * 0.05f * playerSpeed;
-                }
-                else if (e.key.keysym.sym == SDLK_s || e.key.keysym.sym == SDLK_DOWN)
-                {
-                    pos -= dir * 0.05f * playerSpeed;
-                }
-                if (e.key.keysym.sym == SDLK_a || e.key.keysym.sym == SDLK_LEFT)
-                {
-                    pos -= right * 0.05f * playerSpeed;
-                }
-                else if (e.key.keysym.sym == SDLK_d || e.key.keysym.sym == SDLK_RIGHT)
-                {
-                    pos += right * 0.05f * playerSpeed;
-                }
-                if (e.key.keysym.sym == SDLK_SPACE)
-                {
-                    pos += up * 0.05f * playerSpeed;
-                }
-                else if (e.key.keysym.sym == SDLK_LSHIFT)
-                {
-                    pos -= up * 0.05f * playerSpeed;
-                }
-                break;
-            case SDL_QUIT:
-                SDL_Quit();
-                exit(1);
-                
-            default:
-                break;
-        }
-    }
-    View = glm::lookAt(pos, pos + dir, up);
-    MVP = Projection * View * Model;
 }
 
 void KodeEngine::FPSCam::sendMatrix(GLuint program)
 {
     GLuint mvpID = glGetUniformLocation(program, "mvp");
     glUniformMatrix4fv(mvpID, 1, GL_FALSE, &MVP[0][0]);
+}
+
+void KodeEngine::FPSCam::onMouseMotion(float relX, float relY) {
+    horizontalAngle += mouseSpeed * 0.2f * relX;
+    verticalAngle += mouseSpeed * 0.2f * relY;
+}
+
+void KodeEngine::FPSCam::onKeyDown(SDL_Event& e) {
+
+    if (e.key.keysym.sym == SDLK_w || e.key.keysym.sym == SDLK_UP) {
+        pos += dir * 0.05f * playerSpeed;
+    } else if (e.key.keysym.sym == SDLK_s || e.key.keysym.sym == SDLK_DOWN) {
+        pos -= dir * 0.05f * playerSpeed;
+    }
+    if (e.key.keysym.sym == SDLK_a || e.key.keysym.sym == SDLK_LEFT) {
+        pos -= right * 0.05f * playerSpeed;
+    } else if (e.key.keysym.sym == SDLK_d || e.key.keysym.sym == SDLK_RIGHT) {
+        pos += right * 0.05f * playerSpeed;
+    }
+    if (e.key.keysym.sym == SDLK_SPACE) {
+        pos += up * 0.05f * playerSpeed;
+    } else if (e.key.keysym.sym == SDLK_LSHIFT) {
+        pos -= up * 0.05f * playerSpeed;
+    }
+    
+    View = glm::lookAt(pos, pos + dir, up);
+    MVP = Projection * View * Model;
 }

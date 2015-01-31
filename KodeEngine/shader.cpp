@@ -33,6 +33,9 @@ GLuint KodeEngine::Shader::compile(GLenum shaderType, std::string filePath)
     glGetShaderiv(shaderID, GL_INFO_LOG_LENGTH, &infoLogLength);
     std::vector<char> shaderErrorMsg(infoLogLength);
     glGetShaderInfoLog(shaderID, infoLogLength, NULL, &shaderErrorMsg[0]);
+    if (result != GL_TRUE) {
+        std::cout << shaderErrorMsg.data() << std::endl;
+    }
 
     return shaderID;
 }
@@ -53,6 +56,10 @@ GLuint KodeEngine::Shader::linkShader(std::vector<GLuint> shaderIDs)
     std::vector<char> ProgramErrorMessage(std::max(infoLogLength, int(1)));
     glGetProgramInfoLog(programID, infoLogLength, NULL, &ProgramErrorMessage[0]);
     
+    if (result != GL_TRUE) {
+        std::cout << ProgramErrorMessage.data() << std::endl;
+    }
+
     for(auto &shaderID : shaderIDs)
     {
         glDeleteShader(shaderID);

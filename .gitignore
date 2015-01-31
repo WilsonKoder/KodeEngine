@@ -1,2 +1,7 @@
 *.opensdf
 .opensdf
+*.obj
+*.log
+KodeEngine/Debug/*
+KodeEngine/Release/*
+*.tlog

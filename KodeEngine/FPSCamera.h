@@ -10,18 +10,20 @@
 #define __KodeEngine__FPSCamera__
 
 #include <stdio.h>
-#include <GL\glew.h>
+#include <SDL/SDL.h>
+#include <GL/glew.h>
 #include <glm/glm.hpp>
-#include "window.h"
 
 namespace KodeEngine {
     class FPSCam {
     public:
         FPSCam(GLfloat FoV, GLfloat aspectRatio);
         void setPos(glm::vec3 position);
-        void update(KodeEngine::Window window, GLuint program);
-        void checkInput();
+        void update(GLuint program);
 		void sendMatrix(GLuint program);
+
+        void onMouseMotion(float relX, float relY);
+        void onKeyDown(SDL_Event& e);
 
     private:
         glm::mat4 Projection;
