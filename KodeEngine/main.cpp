@@ -3,6 +3,8 @@
 #include <Windows.h>
 #include "KodeEngine.h"
 
+void processInput(KodeEngine::FPSCam& fpsCam);
+
 int main(int argc, char** argv)
 {
 	int windowSize[2] = { 800, 600 };
@@ -69,6 +71,10 @@ int main(int argc, char** argv)
 	GLfloat aspectRatio = 1280.0f / 720.0f;
 
 	KodeEngine::FPSCam fpsCam(FoV, aspectRatio);
+
+    // So we can get relative mouse motion
+    SDL_SetRelativeMouseMode(SDL_TRUE);
+
 	fpsCam.setPos(glm::vec3(4, 3, 3));
 	fpsCam.sendMatrix(program);
 
@@ -76,16 +82,47 @@ int main(int argc, char** argv)
 	{
 		window.clear();
 
-		fpsCam.checkInput();
+        processInput(fpsCam);
 
 		KodeEngine::Shape::shapeDrawBufferWithColor(cubeBuffer, 36, colorBuffer, 1, 0, 0, 1, GL_TRIANGLES);
 
 		KodeEngine::Shape::shapeDrawBuffer(cubeBuffer, 0, 3, GL_TRIANGLES, 0);
 
-		fpsCam.update(window, program);
+		fpsCam.update(program);
 
 		window.swapBuffers();
 	}
 
 	return 0;
+}
+
+// Handles SDL events
+void processInput(KodeEngine::FPSCam& fpsCam) {
+    SDL_Event e;
+
+    while (SDL_PollEvent(&e)) {
+        switch (e.type) {
+            case SDL_MOUSEMOTION:
+                fpsCam.onMouseMotion(e.motion.xrel, -e.motion.yrel);
+                break;
+            case SDL_KEYDOWN:
+                fpsCam.onKeyDown(e);
+                if (e.key.keysym.sym == SDLK_ESCAPE) {
+                    // Stop getting relative mouse movements
+                    SDL_SetRelativeMouseMode(SDL_FALSE);
+                }
+                break;
+            case SDL_MOUSEBUTTONDOWN:
+                // Start getting relative mouse motion
+                SDL_SetRelativeMouseMode(SDL_TRUE);
+                break;
+            case SDL_KEYUP:
+                break;
+            case SDL_QUIT:
+                SDL_Quit();
+                exit(1);
+            default:
+                break;
+        }
+    }
 }

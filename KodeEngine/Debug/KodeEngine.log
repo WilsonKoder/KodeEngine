@@ -1,10 +1,21 @@
-﻿Build started 1/30/2015 5:16:11 PM.
-     1>Project "C:\Users\Wilson\Desktop\Programming\Projects\KodeEngine\KodeEngine\KodeEngine.vcxproj" on node 2 (Build target(s)).
+﻿Build started 1/30/2015 9:18:51 PM.
+     1>Project "C:\projects\KodeEngine\KodeEngine\KodeEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt FPSCamera.cpp
-         FPSCamera.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp
+         main.cpp
+     1>c:\projects\kodeengine\kodeengine\main.cpp(19): warning C4129: 'W' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(19): warning C4129: 'D' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(19): warning C4129: 'P' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(19): warning C4129: 'K' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(19): warning C4129: 's' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(20): warning C4129: 'W' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(20): warning C4129: 'D' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(20): warning C4129: 'P' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(20): warning C4129: 'K' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(20): warning C4129: 's' : unrecognized character escape sequence
+     1>c:\projects\kodeengine\kodeengine\main.cpp(106): warning C4244: 'argument' : conversion from 'Sint32' to 'float', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Wilson\Desktop\Programming\Projects\KodeEngine\Debug\KodeEngine.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2test.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Wilson\Desktop\Programming\Projects\KodeEngine\Debug\KodeEngine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Wilson\Desktop\Programming\Projects\KodeEngine\Debug\KodeEngine.lib" /MACHINE:X86 Debug\camera.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\projects\KodeEngine\Debug\KodeEngine.exe" /INCREMENTAL /NOLOGO SDL2.lib SDL2main.lib SDL2test.lib opengl32.lib glew32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\projects\KodeEngine\Debug\KodeEngine.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\projects\KodeEngine\Debug\KodeEngine.lib" /MACHINE:X86 Debug\camera.obj
          Debug\FPSCamera.obj
          Debug\image.obj
          Debug\input.obj
@@ -14,9 +25,9 @@
          Debug\shader.obj
          Debug\Shape.obj
          Debug\window.obj
-         KodeEngine.vcxproj -> C:\Users\Wilson\Desktop\Programming\Projects\KodeEngine\Debug\KodeEngine.exe
-     1>Done Building Project "C:\Users\Wilson\Desktop\Programming\Projects\KodeEngine\KodeEngine\KodeEngine.vcxproj" (Build target(s)).
+         KodeEngine.vcxproj -> C:\projects\KodeEngine\Debug\KodeEngine.exe
+     1>Done Building Project "C:\projects\KodeEngine\KodeEngine\KodeEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:04.01
+Time Elapsed 00:00:00.97
