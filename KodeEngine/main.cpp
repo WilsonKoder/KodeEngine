@@ -2,6 +2,7 @@
 #include <GL\glew.h>
 #include <Windows.h>
 #include "KodeEngine.h"
+#include <algorithm>
 
 void processInput(KodeEngine::FPSCam& fpsCam);
 
@@ -72,6 +73,30 @@ int main(int argc, char** argv)
 
 	KodeEngine::FPSCam fpsCam(FoV, aspectRatio);
 
+	std::vector<KodeEngine::Cube> cubes;
+	std::vector<std::vector<GLuint>> buffers;
+
+	for (GLfloat x = 0; x < 32; ++x)
+	{
+		for (GLfloat y = 0; y < 32; ++y)
+		{
+			for (GLfloat z = 0; z < 32; ++z)
+			{
+				KodeEngine::Cube cube(x, y, z);
+				cubes.push_back(cube);
+			}
+		}
+	}
+
+	for (auto &cube : cubes)
+	{
+		GLfloat verts[36 * 3];
+		GLuint buffer = KodeEngine::Shape::setupShape(cube.cubeVerts.data(), 36);
+		GLuint colorBuffer = KodeEngine::Shape::setupShapeColor(colorData, 36, sizeof(colorData));
+		std::vector<GLuint> bufferList = { buffer, colorBuffer };
+		buffers.push_back(bufferList);
+	}
+
     // So we can get relative mouse motion
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
@@ -84,9 +109,14 @@ int main(int argc, char** argv)
 
         processInput(fpsCam);
 
-		KodeEngine::Shape::shapeDrawBufferWithColor(cubeBuffer, 36, colorBuffer, 1, 0, 0, 1, GL_TRIANGLES);
+		for (auto &bufferList : buffers)
+		{
+			KodeEngine::Shape::shapeDrawBufferWithColor(bufferList[0], 36, bufferList[1], 1, 0, 0, 1, GL_TRIANGLES);
+		}
 
-		KodeEngine::Shape::shapeDrawBuffer(cubeBuffer, 0, 3, GL_TRIANGLES, 0);
+		//KodeEngine::Shape::shapeDrawBufferWithColor(cubeBuffer, 36, colorBuffer, 1, 0, 0, 1, GL_TRIANGLES);
+
+		//KodeEngine::Shape::shapeDrawBuffer(cubeBuffer, 0, 3, GL_TRIANGLES, 0);
 
 		fpsCam.update(program);
 

@@ -9,6 +9,7 @@
 #ifndef KodeEngine_KodeEngine_h
 #define KodeEngine_KodeEngine_h
 
+#include "cube.h"
 #include "image.h"
 #include "FPSCamera.h"
 #include "camera.h"
