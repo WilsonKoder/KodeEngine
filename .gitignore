@@ -4,3 +4,4 @@
 *.log
 KodeEngine/Debug/*
 KodeEngine/Release/*
+*.tlog
