@@ -73,3 +73,8 @@ void KodeEngine::FPSCam::onKeyDown(SDL_Event& e) {
     View = glm::lookAt(pos, pos + dir, up);
     MVP = Projection * View * Model;
 }
+
+void KodeEngine::FPSCam::lookAt(glm::vec3 point)
+{
+	View = glm::lookAt(pos, point, up);
+}

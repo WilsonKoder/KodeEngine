@@ -21,6 +21,7 @@ namespace KodeEngine {
         void setPos(glm::vec3 position);
         void update(GLuint program);
 		void sendMatrix(GLuint program);
+		void lookAt(glm::vec3 point);
 
         void onMouseMotion(float relX, float relY);
         void onKeyDown(SDL_Event& e);

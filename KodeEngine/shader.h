@@ -19,6 +19,8 @@ namespace KodeEngine {
         GLuint compile(GLenum shaderType, std::string filePath);
         GLuint linkShader(std::vector<GLuint> shaderIDs);
         void useShader(GLuint program);
+		GLuint getUniformLocation(GLuint program, const std::string uniformName);
+		void sendVec3Layout(GLuint loc, GLuint buffer, GLuint index);
     private:
         GLuint programID;
     };

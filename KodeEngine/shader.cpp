@@ -73,3 +73,20 @@ void KodeEngine::Shader::useShader(GLuint program)
     glUseProgram(program);
 }
 
+GLuint KodeEngine::Shader::getUniformLocation(GLuint program, const std::string uniformName)
+{
+	GLuint loc = glGetUniformLocation(program, uniformName.c_str());
+	if (loc == GL_INVALID_INDEX)
+	{
+		std::cerr << "uniform doesn't exist." << std::endl;
+		exit(4); //couldn't find uniform.
+	}
+	return loc;
+}
+
+void KodeEngine::Shader::sendVec3Layout(GLuint loc, GLuint buffer, GLuint index)
+{
+	glEnableVertexAttribArray(index);
+	glBindBuffer(GL_ARRAY_BUFFER, buffer);
+	glVertexAttribPointer(loc, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+}

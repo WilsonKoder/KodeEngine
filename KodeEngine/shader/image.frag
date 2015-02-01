@@ -1,9 +1,8 @@
 #version 330 core
 out vec4 color;
-smooth in vec3 vUV;
-uniform sampler2D texMap;
 
-void main()
-{
-    color = texture(texMap, 1.0f);
+uniform sampler2D diffuse;
+
+void main() {
+    color = texture2D(diffuse, vec2(0.2, 0.2));
 }

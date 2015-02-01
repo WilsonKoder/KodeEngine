@@ -19,7 +19,7 @@ namespace KodeEngine {
         Image(std::string &fileName);
         ~Image();
         GLuint tex;
-        GLuint makeTexture();
+		void bind(GLuint unit);
 //        void render(GLuint shapeBuffer, GLuint texBuffer, GLuint vertLayoutLoc, std::string imgUniform, GLuint vertIndex, GLuint numOfVerts);
         void destroyTexture();
         unsigned long getWidth();

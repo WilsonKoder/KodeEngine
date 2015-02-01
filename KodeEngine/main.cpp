@@ -1,24 +1,24 @@
 #include <SDL\SDL.h>
 #include <GL\glew.h>
-#include <Windows.h>
+//#include <Windows.h>
 #include "KodeEngine.h"
-#include <algorithm>
+#include <iostream>
 
 void processInput(KodeEngine::FPSCam& fpsCam);
 
 int main(int argc, char** argv)
 {
+	GLfloat time = 0.0f;
 	int windowSize[2] = { 960, 540 };
 	GLfloat clearColor[3] = { 0.0f, 0.0f, 0.0f };
 	KodeEngine::Window window(windowSize, "Hello!", clearColor);
 	KodeEngine::Shader shader;
+	std::string img = "img/grass.png";
+	KodeEngine::Image image(img);
+	GLuint tex = image.tex;
 
-	//std::string pathToImage = "/Users/WilsonKoder/Desktop/dp.png";
-	//KodeEngine::Image image(pathToImage);
-	//GLuint tex = image.tex;
-
-	GLuint vertexShader = shader.compile(GL_VERTEX_SHADER, "shader/inColor.vert"); // xcode path issue.
-	GLuint fragShader = shader.compile(GL_FRAGMENT_SHADER, "shader/inColor.frag"); // xcode path issue.
+	GLuint vertexShader = shader.compile(GL_VERTEX_SHADER, "shader/image.vert"); // xcode path issue.
+	GLuint fragShader = shader.compile(GL_FRAGMENT_SHADER, "shader/image.frag"); // xcode path issue.
 	std::vector<GLuint> shaders = { vertexShader, fragShader };
 	GLuint program = shader.linkShader(shaders);
 	shader.useShader(program);
@@ -76,12 +76,13 @@ int main(int argc, char** argv)
 	std::vector<KodeEngine::Cube> cubes;
 	std::vector<std::vector<GLuint>> buffers;
 
-	for (GLfloat x = 0; x < 32; ++x)
+	for (GLfloat x = 0; x < 32; x += 2.5)
 	{
-		for (GLfloat y = 0; y < 32; ++y)
+		for (GLfloat y = 0; y < 32; y += 2.5)
 		{
-			for (GLfloat z = 0; z < 32; ++z)
+			for (GLfloat z = 0; z < 32; z += 2.5)
 			{
+				std::cout << "created cube at coords: " << x << ", " << y << ", " << z << std::endl;
 				KodeEngine::Cube cube(x, y, z);
 				cubes.push_back(cube);
 			}
@@ -90,7 +91,6 @@ int main(int argc, char** argv)
 
 	for (auto &cube : cubes)
 	{
-		GLfloat verts[36 * 3];
 		GLuint buffer = KodeEngine::Shape::setupShape(cube.cubeVerts.data(), 36);
 		GLuint colorBuffer = KodeEngine::Shape::setupShapeColor(colorData, 36, sizeof(colorData));
 		std::vector<GLuint> bufferList = { buffer, colorBuffer };
@@ -100,23 +100,24 @@ int main(int argc, char** argv)
     // So we can get relative mouse motion
     SDL_SetRelativeMouseMode(SDL_TRUE);
 
-	fpsCam.setPos(glm::vec3(4, 3, 3));
+	fpsCam.setPos(glm::vec3(34, 34, 34));
 	fpsCam.sendMatrix(program);
 
 	while (!window.isClosed())
 	{
+		time += 0.01f;
+		
 		window.clear();
+
+		shader.useShader(program);
 
         processInput(fpsCam);
 
 		for (auto &bufferList : buffers)
 		{
+			image.bind(0);
 			KodeEngine::Shape::shapeDrawBufferWithColor(bufferList[0], 36, bufferList[1], 1, 0, 0, 1, GL_TRIANGLES);
 		}
-
-		//KodeEngine::Shape::shapeDrawBufferWithColor(cubeBuffer, 36, colorBuffer, 1, 0, 0, 1, GL_TRIANGLES);
-
-		//KodeEngine::Shape::shapeDrawBuffer(cubeBuffer, 0, 3, GL_TRIANGLES, 0);
 
 		fpsCam.update(program);
 

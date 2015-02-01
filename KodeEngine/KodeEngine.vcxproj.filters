@@ -94,5 +94,7 @@
     <None Include="shader\image.vert" />
     <None Include="shader\inColor.frag" />
     <None Include="shader\inColor.vert" />
+    <None Include="shader\changeOverTime.vert" />
+    <None Include="shader\changeOverTime.frag" />
   </ItemGroup>
 </Project>
