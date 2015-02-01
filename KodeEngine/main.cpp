@@ -23,9 +23,7 @@ int main(int argc, char** argv)
 	GLuint program = shader.linkShader(shaders);
 	shader.useShader(program);
 
-	glEnable(GL_DEPTH_TEST);
-	glEnable(GL_CULL_FACE);
-	glDepthFunc(GL_LESS);
+
 
 	GLfloat colorData[] = {
 		1.0f, 0.0f, 0.0f,

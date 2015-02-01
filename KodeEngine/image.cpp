@@ -9,52 +9,35 @@
 #include "image.h"
 #include <GL\glew.h>
 #include <iostream>
-#include <picopng.h>
-#include <picopng.cpp>
+#define STB_IMAGE_IMPLEMENTATION
+#include <stb/stb_image.h>
 #include "IOManager.h"
 #include <cassert>
 
 KodeEngine::Image::Image(std::string &fileName)
 {
-    KodeEngine::IOManager iomanager;
-    
-    if (iomanager.readFileToBuffer(fileName, imgData) == false)
-    {
-        std::cerr << "Couldn't open file: " << fileName << std::endl;
-        exit(2);
-    }
+	glEnable(GL_TEXTURE_2D);
 
-    std::vector<unsigned char> resultPixels;
-    unsigned long width;
-    unsigned long height;
-    int errorCode = KodeEngine::decodePNG(resultPixels, width, height, imgData.data(), imgData.size());
-    
-    if (errorCode != 0)
-    {
-        std::cerr << "Could not decode PNG: " << fileName << std::endl;
-        exit(3);
-    }
-    
-    texWidth = width;
-    texHeight = height;
-
-	glGenTextures(1, &tex);
-	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, tex);
-
-	// set up attributes
+	int numComponents;
+	unsigned char* imageData = stbi_load(fileName.c_str(), &texWidth, &texHeight, &numComponents, 4);
 	
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, imgData.data());
+	glGenTextures(1, &tex);
+	glBindTexture(GL_TEXTURE_2D, tex);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, texWidth, texHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); // handle minification linearly
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // handle magnification linearly
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT); // repeat texture on x
-	glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT); // repeat texture on y
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 
+	glGenerateMipmap(GL_TEXTURE_2D);
+
+	stbi_image_free(imageData);
 }
 
 KodeEngine::Image::~Image()
 {
+	glDeleteTextures(1, &tex);
     std::cout << "destroyed image" << std::endl;
 }
 
@@ -65,22 +48,17 @@ void KodeEngine::Image::bind(GLuint unit)
 	glBindTexture(GL_TEXTURE_2D, tex);
 }
 
-void KodeEngine::Image::destroyTexture()
-{
-    glDeleteTextures(1, &tex);
-}
-
-unsigned long KodeEngine::Image::getWidth()
+int KodeEngine::Image::getWidth()
 {
     return texWidth;
 }
 
-unsigned long KodeEngine::Image::getHeight()
+int KodeEngine::Image::getHeight()
 {
     return texHeight;
 }
 
-unsigned long KodeEngine::Image::getChannels()
+int KodeEngine::Image::getChannels()
 {
     return texChannels;
 }

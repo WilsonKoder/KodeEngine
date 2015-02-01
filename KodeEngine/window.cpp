@@ -18,9 +18,9 @@ KodeEngine::Window::Window(int res[2], const char* title, GLfloat clearColor[3])
         {
 
             SDL_ShowCursor(false);
-            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
-            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-            SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+            SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+            //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 			SDL_GL_CreateContext(m_window);
 
 			glewExperimental = GL_TRUE;
@@ -38,6 +38,10 @@ KodeEngine::Window::Window(int res[2], const char* title, GLfloat clearColor[3])
             glGenVertexArrays(1, &VertexArrayID); // we kinda have to do this, code doesnt work if you don't do this. Go, delete the this and the next one
             glBindVertexArray(VertexArrayID);
             glClearColor(clearColor[0], clearColor[1], clearColor[2], 1.0f);
+			glEnable(GL_DEPTH_TEST);
+			glEnable(GL_CULL_FACE);
+			glEnable(GL_TEXTURE_2D);
+			glDepthFunc(GL_LESS);
             resX = res[0];
             resY = res[1];
         }

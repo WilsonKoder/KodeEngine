@@ -22,14 +22,13 @@ namespace KodeEngine {
 		void bind(GLuint unit);
 //        void render(GLuint shapeBuffer, GLuint texBuffer, GLuint vertLayoutLoc, std::string imgUniform, GLuint vertIndex, GLuint numOfVerts);
         void destroyTexture();
-        unsigned long getWidth();
-        unsigned long getHeight();
-        unsigned long getChannels();
+        int getWidth();
+		int getHeight();
+        int getChannels();
     private:
-        std::vector<unsigned char> imgData;
-        unsigned long texWidth;
-        unsigned long texHeight;
-        unsigned long texChannels;
+        int texWidth;
+		int texHeight;
+        int texChannels;
     };
 }
 
