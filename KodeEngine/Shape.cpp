@@ -48,3 +48,16 @@ void KodeEngine::Shape::shapeDrawBufferWithColor(GLuint shapeBuffer, GLuint numO
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 }
+
+void KodeEngine::Shape::shapeDrawWithTexture(GLuint shapeBuffer, GLuint numVerts, GLuint tex, GLuint texLayoutLoc, GLuint vertLayoutLoc, GLuint vertIndex, GLuint texIndex, GLuint shapeType)
+{
+	glEnableVertexAttribArray(vertIndex);
+	glBindBuffer(GL_ARRAY_BUFFER, shapeBuffer);
+	glVertexAttribPointer(vertLayoutLoc, 3, GL_FLOAT, GL_FALSE, 0, (void *)0);
+	glEnableVertexAttribArray(texIndex);
+	glBindBuffer(GL_ARRAY_BUFFER, tex);
+	glVertexAttribPointer(texLayoutLoc, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
+	glDrawArrays(shapeType, 0, numVerts);
+	glDisableVertexAttribArray(vertIndex);
+	glDisableVertexAttribArray(texIndex);
+}

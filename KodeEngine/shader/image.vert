@@ -1,10 +1,11 @@
-#version 330
+#version 120
 
-layout(location = 0) in vec3 vertexPosition_modelspace;
-
-uniform mat4 mvp;
+attribute vec3 position;
+varying vec2 texCoord0;
+attribute vec2 texCoord;
 
 void main() {
-    vec4 v = vec4(vertexPosition_modelspace, 1);
-    gl_Position = mvp * v;
+	gl_Position.xyz = position;
+	gl_Position.w = 1.0;
+	texCoord0 = texCoord;
 }

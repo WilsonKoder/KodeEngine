@@ -72,27 +72,29 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="cube.cpp" />
     <ClCompile Include="FPSCamera.cpp" />
-    <ClCompile Include="image.cpp" />
     <ClCompile Include="input.cpp" />
     <ClCompile Include="IOManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mesh.cpp" />
     <ClCompile Include="model.cpp" />
     <ClCompile Include="shader.cpp" />
     <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="texture.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="cube.h" />
     <ClInclude Include="FPSCamera.h" />
-    <ClInclude Include="image.h" />
     <ClInclude Include="input.h" />
     <ClInclude Include="IOManager.h" />
     <ClInclude Include="KodeEngine.h" />
+    <ClInclude Include="mesh.h" />
     <ClInclude Include="model.h" />
     <ClInclude Include="primitives.h" />
     <ClInclude Include="shader.h" />
     <ClInclude Include="Shape.h" />
+    <ClInclude Include="texture.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <ItemGroup>

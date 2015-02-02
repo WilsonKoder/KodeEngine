@@ -19,6 +19,7 @@ namespace KodeEngine {
         static GLuint setupShapeColor(GLfloat colorData[], GLuint numberOfColors, GLuint size);
         static void shapeDrawBuffer(GLuint vertexBuffer, GLuint shaderLayoutLoc, GLuint numberOfVerts, GLenum shapeType, GLuint index);
         static void shapeDrawBufferWithColor(GLuint shapeBuffer, GLuint numOfShapeVerts, GLuint colorBuffer, GLuint colorLayoutLoc, GLuint vertLayoutLoc, GLuint vertIndex, GLuint colorIndex, GLuint shapeType);
+		static void shapeDrawWithTexture(GLuint shapeBuffer, GLuint numVerts, GLuint tex, GLuint texLayoutLoc, GLuint vertLayoutLoc, GLuint vertIndex, GLuint texIndex, GLuint shapeType);
     };
 }
 

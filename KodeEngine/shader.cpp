@@ -65,6 +65,9 @@ GLuint KodeEngine::Shader::linkShader(std::vector<GLuint> shaderIDs)
         glDeleteShader(shaderID);
     }
     
+	glBindAttribLocation(programID, 0, "position");
+	glBindAttribLocation(programID, 1, "texCoord");
+
     return programID;
 }
 

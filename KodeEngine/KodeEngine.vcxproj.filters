@@ -33,9 +33,6 @@
     <ClCompile Include="FPSCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="image.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,6 +43,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,9 +71,6 @@
     <ClInclude Include="FPSCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="image.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,6 +84,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="cube.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

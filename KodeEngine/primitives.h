@@ -10,11 +10,12 @@
 #define __KodeEngine__primitives__
 
 #include <stdio.h>
+#include <vector>
 
 #include <GL\glew.h>
 
 namespace KodeEngine {
-    GLfloat cubeVerts[] = {
+    std::vector<GLfloat> cubeVerts = {
         -1.0f,-1.0f,-1.0f, // triangle 1 : begin
         -1.0f,-1.0f, 1.0f,
         -1.0f, 1.0f, 1.0f, // triangle 1 : end

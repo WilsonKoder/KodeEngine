@@ -35,7 +35,7 @@ void KodeEngine::FPSCam::update(GLuint program)
     dir = glm::vec3(cos(verticalAngle) * sin(horizontalAngle), sin(verticalAngle), cos(verticalAngle) * cos(horizontalAngle));
     right = glm::vec3(sin(horizontalAngle - 3.14 / 2.0f), 0, cos(horizontalAngle - 3.14f / 2.0f));
     up = glm::cross(right, dir);
-    
+
     View = glm::lookAt(pos, pos + dir, up);
     MVP = Projection * View * Model;
     sendMatrix(program);
@@ -69,7 +69,7 @@ void KodeEngine::FPSCam::onKeyDown(SDL_Event& e) {
     } else if (e.key.keysym.sym == SDLK_LSHIFT) {
         pos -= up * 0.05f * playerSpeed;
     }
-    
+
     View = glm::lookAt(pos, pos + dir, up);
     MVP = Projection * View * Model;
 }

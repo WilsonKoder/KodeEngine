@@ -9,8 +9,9 @@
 #ifndef KodeEngine_KodeEngine_h
 #define KodeEngine_KodeEngine_h
 
+#include "texture.h"
+#include "mesh.h"
 #include "cube.h"
-#include "image.h"
 #include "FPSCamera.h"
 #include "camera.h"
 #include "window.h"
