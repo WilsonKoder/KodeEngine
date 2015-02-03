@@ -3,12 +3,13 @@
 
 #include <GL\glew.h>
 #include <vector>
+#include "mesh.h"
 
 namespace KodeEngine {
 	class Cube {
 	public:
 		Cube(GLfloat x, GLfloat y, GLfloat z);
-		std::vector<GLfloat> cubeVerts;
+		std::vector<KodeEngine::Vertex> cubeVerts;
 	private:
 		GLfloat xpos, ypos, zpos;
 		void initCube();

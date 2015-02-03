@@ -1,6 +1,6 @@
 #version 430
 out vec3 color;
-varying vec2 texCoord0;
+in vec2 texCoord0;
 uniform sampler2D diffuse;
 
 void main() {

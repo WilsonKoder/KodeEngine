@@ -27,7 +27,6 @@ KodeEngine::Mesh::Mesh(Vertex* vertices, GLuint numVertices)
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, 0); 
 	// 0 : index, 3 : 3 verts per position, GL_FLOAT : type, GL_FALSE : normalized?, 0 : stride, 0 : pointer
-	glBindVertexArray(0);
 
 	//Texture
 	glBindBuffer(GL_ARRAY_BUFFER, m_vertexArrayBuffers[TEXCOORD_VB]);
