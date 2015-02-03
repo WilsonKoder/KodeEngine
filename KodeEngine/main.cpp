@@ -24,7 +24,7 @@ int main(int argc, char** argv)
 	KodeEngine::Vertex verts[] = {
 		KodeEngine::Vertex(glm::vec3(-0.5f, -0.5f, 0.0f), glm::vec2(0.0f, 0.0f)),
 		KodeEngine::Vertex(glm::vec3(0.5, -0.5f, 0.0f), glm::vec2(1.0f, 0.0f)),
-		KodeEngine::Vertex(glm::vec3(0.0f, 1.5f, 0.0f), glm::vec2(0.5f, 1.0f))
+		KodeEngine::Vertex(glm::vec3(0.0f, 0.5f, 0.0f), glm::vec2(0.5f, 1.0f))
 	};
 
 	KodeEngine::Mesh mesh(verts, sizeof(verts) / sizeof(verts[0]));
