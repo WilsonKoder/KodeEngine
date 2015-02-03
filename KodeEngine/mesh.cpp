@@ -36,7 +36,7 @@ KodeEngine::Mesh::Mesh(Vertex* vertices, GLuint numVertices)
 	glEnableVertexAttribArray(1);
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, 0);
 	// 0 : index, 3 : 3 verts per position, GL_FLOAT : type, GL_FALSE : normalized?, 0 : stride, 0 : pointer
-	glBindVertexArray(1);
+	glBindVertexArray(0);
 
 }
 
