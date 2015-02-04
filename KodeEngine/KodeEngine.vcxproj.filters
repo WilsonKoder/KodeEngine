@@ -102,5 +102,7 @@
     <None Include="shader\inColor.vert" />
     <None Include="shader\changeOverTime.vert" />
     <None Include="shader\changeOverTime.frag" />
+    <None Include="shader\imageTwirl.frag" />
+    <None Include="shader\imageTwirl.vert" />
   </ItemGroup>
 </Project>

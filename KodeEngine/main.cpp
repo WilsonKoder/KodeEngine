@@ -27,27 +27,10 @@ int main(int argc, char** argv)
 		KodeEngine::Vertex(glm::vec3(0.0f, 0.5f, 0.0f), glm::vec2(0.5f, 1.0f))
 	};
 
-	std::vector<KodeEngine::Mesh> meshes;
-
-	//for (GLfloat x = 0; x < 64; x += 2)
-	//{
-	//	for (GLfloat y = 0; y < 64; y += 2)
-	//	{
-	//		for (GLfloat z = 0; z < 64; z += 2)
-	//		{
-	//			KodeEngine::Cube cube(x, y, z);
-	//			KodeEngine::Mesh cubeMesh(cube.cubeVerts.data(), 36);
-	//			meshes.push_back(cubeMesh);
-	//		}
-	//	}
-	//}
+	KodeEngine::Cube cube1(1, 1, 1);
+	KodeEngine::Mesh mesh(cube1.cubeVerts.data(), 36);
 
 	KodeEngine::Texture texture("img/wood.jpg");
-
-	KodeEngine::Cube cube(1, 2, 3);
-	KodeEngine::Cube cube2(1, 4, 3);
-	KodeEngine::Mesh cubeMesh(cube.cubeVerts.data(), 36);
-	KodeEngine::Mesh cubeMesh2(cube2.cubeVerts.data(), 36);
 
 	KodeEngine::FPSCam fpsCam(45.0f, 16.0f / 9.0f);
 	fpsCam.setPos(glm::vec3(4, 3, 3));
@@ -61,15 +44,10 @@ int main(int argc, char** argv)
 		processInput(fpsCam);
 
 		shader.useShader(program);
-		texture.bind(0);
 		
-		cubeMesh.draw();
-		cubeMesh2.draw();
+		texture.bind(0);
 
-		//for (auto &mesh : meshes)
-		//{
-		//	mesh.draw();
-		//}
+		mesh.draw();
 
 		window.swapBuffers();
 	}

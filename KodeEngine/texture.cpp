@@ -27,6 +27,8 @@ KodeEngine::Texture::Texture(const std::string& fileName)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+	glGenerateMipmap(GL_TEXTURE_2D);
+
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, imageData);
 
 	stbi_image_free(imageData);
