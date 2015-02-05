@@ -2,6 +2,7 @@
 #include <GL\glew.h>
 #include "KodeEngine.h"
 #include <iostream>
+#include "voxelWorld.h"
 
 void processInput(KodeEngine::FPSCam& fpsCam);
 
@@ -27,8 +28,10 @@ int main(int argc, char** argv)
 		KodeEngine::Vertex(glm::vec3(0.0f, 0.5f, 0.0f), glm::vec2(0.5f, 1.0f))
 	};
 
-	KodeEngine::Cube cube1(1, 1, 1);
-	KodeEngine::Mesh mesh(cube1.cubeVerts.data(), 36);
+	//KodeEngine::Cube cube1(1, 1, 1);
+	//KodeEngine::Mesh mesh(cube1.cubeVerts.data(), 36);
+
+	VoxelWorld::World world(10, 10, 10, 10);
 
 	KodeEngine::Texture texture("img/wood.jpg");
 
@@ -47,7 +50,7 @@ int main(int argc, char** argv)
 		
 		texture.bind(0);
 
-		mesh.draw();
+		world.draw();
 
 		window.swapBuffers();
 	}

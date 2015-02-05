@@ -79,11 +79,11 @@ void KodeEngine::Shader::useShader(GLuint program)
 GLuint KodeEngine::Shader::getUniformLocation(GLuint program, const std::string uniformName)
 {
 	GLuint loc = glGetUniformLocation(program, uniformName.c_str());
-	//if (loc == GL_INVALID_INDEX)
-	//{
-	//	std::cerr << "uniform doesn't exist." << std::endl;
-	//	exit(4); //couldn't find uniform.
-	//}
+	if (loc == GL_INVALID_INDEX)
+	{
+		std::cerr << "uniform doesn't exist." << std::endl;
+		exit(4); //couldn't find uniform.
+	}
 	return loc;
 }
 
