@@ -11,7 +11,16 @@
 
 #include <stdio.h>
 #include <SDL/SDL.h>
-#include <GL/glew.h>
+
+#ifdef __APPLE__
+    #include <OpenGL/gl3.h>
+#endif
+
+#ifdef _WIN32
+    #define GLEW
+    #include <GL/glew.h>
+#endif
+
 #include <glm/glm.hpp>
 
 namespace KodeEngine {

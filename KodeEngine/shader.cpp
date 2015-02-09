@@ -9,7 +9,13 @@
 #include "shader.h"
 #include "IOManager.h"
 #include <iostream>
-#include <GL\glew.h>
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+#ifdef _WIN32
+#define GLEW
+#include <GL/glew.h>
+#endif
 #include <algorithm>
 
 GLuint KodeEngine::Shader::compile(GLenum shaderType, std::string filePath)

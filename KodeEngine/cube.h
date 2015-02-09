@@ -1,7 +1,13 @@
 #ifndef _KodeEngine_cube_h_
 #define _KodeEngine_cube_h_
 
-#include <GL\glew.h>
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+#ifdef _WIN32
+#define GLEW
+#include <GL/glew.h>
+#endif
 #include <vector>
 #include "mesh.h"
 

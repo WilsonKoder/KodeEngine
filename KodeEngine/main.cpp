@@ -1,5 +1,11 @@
-#include <SDL\SDL.h>
-#include <GL\glew.h>
+#include <SDL/SDL.h>
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+#ifdef _WIN32
+#define GLEW
+#include <GL/glew.h>
+#endif
 #include "KodeEngine.h"
 #include <iostream>
 #include "voxelWorld.h"

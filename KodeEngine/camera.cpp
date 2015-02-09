@@ -9,7 +9,13 @@
 #include "camera.h"
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <GL\glew.h>
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+#ifdef _WIN32
+#define GLEW
+#include <GL/glew.h>
+#endif
 
 KodeEngine::Camera::Camera(GLfloat fov, GLfloat aspectRatio)
 {

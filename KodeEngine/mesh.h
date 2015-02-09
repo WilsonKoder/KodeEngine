@@ -1,7 +1,13 @@
 #ifndef __KodeEngine_mesh__
 #define __KodeEngine_mesh__
 
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+#ifdef _WIN32
+#define GLEW
 #include <GL/glew.h>
+#endif
 #include <vector>
 #include <glm/glm.hpp>
 #include "vertex.h"

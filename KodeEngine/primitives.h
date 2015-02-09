@@ -12,7 +12,13 @@
 #include <stdio.h>
 #include <vector>
 
-#include <GL\glew.h>
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+#ifdef _WIN32
+#define GLEW
+#include <GL/glew.h>
+#endif
 
 namespace KodeEngine {
     std::vector<GLfloat> cubeVerts = {

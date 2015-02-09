@@ -22,7 +22,8 @@ KodeEngine::Window::Window(int res[2], const char* title, GLfloat clearColor[3])
             SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
             //SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 			SDL_GL_CreateContext(m_window);
-
+            
+#ifdef GLEW
 			glewExperimental = GL_TRUE;
 			GLint result = glewInit();
 
@@ -32,6 +33,7 @@ KodeEngine::Window::Window(int res[2], const char* title, GLfloat clearColor[3])
 				std::cin.get();
 				exit(3);
 			}
+#endif
 
 			std::cout << glGetString(GL_VERSION) << std::endl;
             GLuint VertexArrayID = 0;

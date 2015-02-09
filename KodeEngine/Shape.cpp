@@ -7,7 +7,14 @@
 //
 
 #include "Shape.h"
-#include <GL\glew.h>
+#ifdef __APPLE__
+#include <OpenGL/gl3.h>
+#endif
+#ifdef _WIN32
+#define GLEW
+#include <GL/glew.h>
+#endif
+
 
 GLuint KodeEngine::Shape::setupShape(GLfloat vertexData[], GLuint numberOfVerts)
 {
